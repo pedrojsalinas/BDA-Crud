@@ -1,0 +1,30 @@
+{% extends 'proyecto/base.html' %}
+{% block content %}
+<h1 class="text-center">Relaciones</h1>
+
+<br>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">tipo</th>
+      <th scope="col">tiempo</th>
+      <th scope="col">agresion_previa</th>
+      <th scope="col">Agresor</th>
+      <th scope="col">Victima</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for relacion in relaciones%}
+    <tr>
+      <td>{{relacion.id}}</td>
+      <td>{{relacion.tipo}}</td>
+      <td>{{relacion.tiempo}}</td>
+      <td>{{relacion.agresion_previa}}</td>
+      <td>{{relacion.agresor.nombres}} {{relacion.agresor.apellidos}}</td>
+      <td>{{relacion.victima.nombres}} {{relacion.victima.apellidos}}</td>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

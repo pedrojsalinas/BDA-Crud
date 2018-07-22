@@ -1,0 +1,62 @@
+{% extends 'proyecto/base.html' %}
+{% block content %}
+{% load bootstrap3 %}
+
+<h1 class="text-center">Victimas</h1>
+<button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">
+  Agregar Victima
+</button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Victima</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            {% bootstrap_form form %}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+<br>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Nombres</th>
+      <th scope="col">Apellidos</th>
+      <th scope="col">Edad</th>
+      <th scope="col">Nacionalidad</th>
+      <th scope="col">Ocupacion</th>
+      <th scope="col">Causa</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for victima in victimas%}
+    <tr>
+      <td><a href="{% url 'detalle-victima' victima.id %}" >{{victima.id}}</td>
+      <td>{{victima.nombres}}</td>
+      <td>{{victima.apellidos}}</td>
+      <td>{{victima.edad}}</td>
+      <td>{{victima.nacionalidad}}</td>
+      <td>{{victima.ocupacion}}</td>
+      <td>{{victima.causa}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

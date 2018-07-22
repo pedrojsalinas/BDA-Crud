@@ -1,0 +1,14 @@
+{% extends 'proyecto/base.html' %}
+{% block content %}
+{% load bootstrap3 %}
+
+<h2>{{victima.nombres}} {{victima.apellidos}}</h2>
+<form method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    {% bootstrap_form form %}
+  </div>
+  <a class="btn btn-danger" href="{% url 'eliminar-victima' pk=victima.pk %}" role="button">Eliminar</a>
+  <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+{% endblock %}

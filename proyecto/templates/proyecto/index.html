@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Base de Datos</title>
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% bootstrap_messages %}
+  </head>
+  <body>
+    <div class="container">
+
+    <h1>Victimas</h1>
+    <table class="table">
+      <thead >
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nombres</th>
+          <th scope="col">Apellidos</th>
+          <th scope="col">Edad</th>
+          <th scope="col">Nacionalidad</th>
+          <th scope="col">Ocupacion</th>
+          <th scope="col">Causa</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for victima in victimas%}
+        <tr>
+          <td>{{victima.id}}</td>
+          <td>{{victima.nombres}}</td>
+          <td>{{victima.apellidos}}</td>
+          <td>{{victima.edad}}</td>
+          <td>{{victima.nacionalidad}}</td>
+          <td>{{victima.ocupacion}}</td>
+          <td>{{victima.causa}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  </body>
+</html>

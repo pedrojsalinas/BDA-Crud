@@ -1,0 +1,64 @@
+{% extends 'proyecto/base.html' %}
+{% block content %}
+{% load bootstrap3 %}
+
+<h1 class="text-center">Femicidios</h1>
+<button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal" >
+  Agregar Femicidio
+</button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Femicidio</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            {% bootstrap_form form %}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+<br>
+<table class="table">
+  <thead >
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Hora</th>
+      <th scope="col">Circunstancia</th>
+      <th scope="col">Arma</th>
+      <th scope="col">Testigo</th>
+      <th scope="col">Agresor</th>
+      <th scope="col">Victima</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for femicidio in femicidios%}
+    <tr >
+      <td><a href="{% url 'detalle-femicidio' femicidio.id %}" >{{femicidio.id}}</td>
+      <td>{{femicidio.fecha}}</td>
+      <td>{{femicidio.hora}}</td>
+      <td>{{femicidio.circunstancia}}</td>
+      <td>{{femicidio.tipo_arma}}</td>
+      <td>{{femicidio.testigo}}</td>
+      <td>{{femicidio.agresor.nombres}} {{femicidio.agresor.apellidos}}</td>
+      <td>{{femicidio.victima.nombres}} {{femicidio.victima.apellidos}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
